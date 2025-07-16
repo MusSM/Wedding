@@ -491,7 +491,7 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
         
-        // Обработка формы
+// Обработка формы
         const form = document.querySelector('form');
         const formSuccess = document.getElementById('form-success');
         
@@ -507,6 +507,19 @@
                     }
                 });
                 
+                if (response.ok) {
+                    form.reset();
+                    formSuccess.style.display = 'block';
+                    setTimeout(() => {
+                        formSuccess.style.display = 'none';
+                    }, 5000);
+                } else {
+                    throw new Error('Ошибка отправки формы');
+                }
+            } catch (error) {
+                alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+                console.error(error);
+            }
         });
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
