@@ -231,8 +231,7 @@
             cursor: pointer;
             display: flex;
             flex-direction: column;
-            background-color: #f5f5f5; /* Фон для сохранения пропорций */
-            aspect-ratio: 1 / 1; /* Квадратный формат */
+            background-color: #f5f5f5;
         }
         
         .gallery-item:hover {
@@ -241,10 +240,11 @@
         
         .gallery-item img {
             width: 100%;
-            height: 100%;
-            object-fit: contain; /* Изменено с cover на contain */
+            height: auto;
+            object-fit: contain;
             transition: transform 0.5s ease;
-            background-color: #f5f5f5; /* Фон для сохранения пропорций */
+            background-color: #f5f5f5;
+            flex-grow: 1;
         }
         
         .gallery-item:hover img {
@@ -257,6 +257,7 @@
             padding: 15px;
             text-align: center;
             font-size: 1rem;
+            flex-shrink: 0;
         }
         
         /* Lightbox */
@@ -430,7 +431,7 @@
             width: 100%;
             height: 3px;
             background: var(--text-color);
-            transform: translate(-50%, -50%) rotate(-10deg);
+            transform: translate(-50%, -50%) rotate(-5deg);
         }
         
         /* Responsive */
@@ -486,14 +487,6 @@
                 gap: 20px;
             }
             
-            .gallery-item {
-                aspect-ratio: 1 / 1; /* Сохраняем квадратный формат */
-            }
-            
-            .gallery-caption {
-                font-size: 0.9rem;
-            }
-            
             /* Дресс-код */
             .dress-code-examples {
                 gap: 15px;
@@ -539,11 +532,6 @@
             
             .countdown-label {
                 font-size: 0.6rem;
-            }
-            
-            /* Галерея для мобильных */
-            .gallery-item {
-                aspect-ratio: 1 / 1; /* Сохраняем квадратный формат */
             }
             
             .dress-code-example {
