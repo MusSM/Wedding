@@ -37,7 +37,7 @@
         
         /* Header */
         header {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://images.unsplash.com/photo-1519225421980-715cb0215aed');
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--header-bg, url('https://i.postimg.cc/PrNF9Gsb/temp-Image5-It-Mx-O.avif'));
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -303,6 +303,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
+            color: #000; /* Черный цвет для меток */
         }
         
         .form-group input,
@@ -313,6 +314,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: 'Montserrat', sans-serif;
+            color: #000; /* Черный цвет для текста ввода */
         }
         
         .form-group textarea {
@@ -348,6 +350,69 @@
             color: var(--secondary-color);
         }
         
+        /* Дресс-код */
+        .dress-code {
+            background-color: var(--light-text);
+        }
+        
+        .dress-code-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .dress-code-section {
+            margin-bottom: 40px;
+        }
+        
+        .dress-code-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .dress-code-description {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .dress-code-examples {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .dress-code-example {
+            width: 150px;
+            text-align: center;
+        }
+        
+        .dress-code-example img {
+            width: 100%;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+        
+        /* Перечеркнутый текст */
+        .strikethrough {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .strikethrough:after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: currentColor;
+            transform: translateY(-50%);
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .names {
@@ -374,6 +439,14 @@
             .gallery-caption {
                 font-size: 0.8rem;
                 padding: 8px;
+            }
+            
+            .dress-code-examples {
+                gap: 10px;
+            }
+            
+            .dress-code-example {
+                width: 120px;
             }
         }
     </style>
@@ -429,8 +502,8 @@
             <h2 class="section-title">Детали мероприятия</h2>
             <div class="details-grid">
                 <div class="details-item">
-                    <div class="details-icon">🍽️</div>
-                    <h3 class="details-title">Банкет (мини туса)</h3>
+                    <div class="details-icon">🏡</div>
+                    <h3 class="details-title"><span class="strikethrough">Первый</span> Второй день свадьбы</h3>
                     <p>25 августа 2025 в 16:00</p>
                     <p>Посёлок Кратово, Тверская 5/17 (да-да, в тупике)</p>
                 </div>
@@ -439,6 +512,57 @@
                     <h3 class="details-title">Подарки</h3>
                     <p>Ваше присутствие - лучший подарок для нас</p>
                     <p>Если хотите сделать материальный (и/или) алкогольный подарок (а вы наверняка хотите), мы будем благодарны за вклад в наше будущее</p>                                                             
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dress-code">
+        <div class="container">
+            <h2 class="section-title">Дресс код</h2>
+            <div class="dress-code-container">
+                <div class="dress-code-description">
+                    Наша свадьба пройдет в стиле рустик - уютная, природная атмосфера с элементами деревенского шарма.
+                </div>
+                
+                <div class="dress-code-section">
+                    <h3 class="dress-code-title">Для мальчиков</h3>
+                    <p>Рекомендуем светлые или пастельные тона, натуральные ткани (лён, хлопок), клетчатые рубашки или рубашки в мелкий рисунок. Можно дополнить образ жилеткой или подтяжками.</p>
+                    
+                    <div class="dress-code-examples">
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/8P5Vt0ZJ/rustic-men1.jpg" alt="Пример для мальчиков 1">
+                            <div>Светлый костюм</div>
+                        </div>
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/9XQ8YJ8K/rustic-men2.jpg" alt="Пример для мальчиков 2">
+                            <div>Клетчатая рубашка</div>
+                        </div>
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/9FQv3Qy3/rustic-men3.jpg" alt="Пример для мальчиков 3">
+                            <div>Льняной костюм</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="dress-code-section">
+                    <h3 class="dress-code-title">Для девочек</h3>
+                    <p>Платья в пастельных тонах или с цветочным принтом, кружевные или льняные модели. Длина миди или макси. Можно дополнить образ венком или деревянными аксессуарами.</p>
+                    
+                    <div class="dress-code-examples">
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/8z8pL8QY/rustic-women1.jpg" alt="Пример для девочек 1">
+                            <div>Кружевное платье</div>
+                        </div>
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/3RZQ1Qk0/rustic-women2.jpg" alt="Пример для девочек 2">
+                            <div>Цветочный принт</div>
+                        </div>
+                        <div class="dress-code-example">
+                            <img src="https://i.postimg.cc/8kQ3F4hR/rustic-women3.jpg" alt="Пример для девочек 3">
+                            <div>Пастельные тона</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -526,9 +650,7 @@
         <div class="container">
             <p class="footer-text">С нетерпением ждём встречи с вами и вашим алкогольным Альтерэго в наш особенный день!</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook"></i></a>
-                <a href="#"><i class="fab fa-telegram"></i></a>
+                <!-- Иконки соцсетей удалены по требованию -->
             </div>
         </div>
     </footer>
@@ -615,6 +737,14 @@
                 });
             });
         });
+        
+        // Функция для изменения фона в шапке
+        function setHeaderBackground(imageUrl) {
+            document.documentElement.style.setProperty('--header-bg', `url('${imageUrl}')`);
+        }
+        
+        // Пример использования (можно вызвать из консоли или добавить интерфейс для загрузки):
+        // setHeaderBackground('https://example.com/your-image.jpg');
     </script>
 </body>
 </html>
