@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Наша свадьба</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         :root {
             --primary-color: #f0f7e8;
@@ -212,6 +213,7 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         
         .gallery-item:hover {
@@ -239,6 +241,48 @@
             padding: 10px;
             text-align: center;
             font-size: 0.9rem;
+        }
+        
+        /* Lightbox стили */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            text-align: center;
+        }
+        
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 8px;
+        }
+        
+        .lightbox-caption {
+            color: white;
+            text-align: center;
+            margin-top: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
         }
         
         /* RSVP */
@@ -321,6 +365,16 @@
             .story-text, .story-image {
                 margin-bottom: 30px;
             }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .gallery-caption {
+                font-size: 0.8rem;
+                padding: 8px;
+            }
         }
     </style>
 </head>
@@ -352,7 +406,7 @@
             </div>
         </div>
     </header>
- 
+
     <section class="our-story">
         <img src="https://i.postimg.cc/T3vjJzdY/temp-Imagemajek0.avif" alt="Гондольер в Венеции" class="gondola-bg">
         <div class="container">
@@ -369,7 +423,7 @@
             </div>
         </div>
     </section>
- 
+
     <section class="details">
         <div class="container">
             <h2 class="section-title">Детали мероприятия</h2>
@@ -389,31 +443,40 @@
             </div>
         </div>
     </section>
- 
+
     <section class="gallery">
         <div class="container">
             <h2 class="section-title">Наши моменты</h2>
             <div class="gallery-grid">
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/L4BsFfkT/temp-Imagen3-J9z-W.avif', 'Я еще не знаю, что меня ждет в конце забега')">
                     <img src="https://i.postimg.cc/L4BsFfkT/temp-Imagen3-J9z-W.avif" alt="Фото 1">
                     <div class="gallery-caption">Я еще не знаю, что меня ждет в конце забега</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/Hkfmys4n/temp-Imageo7h-OSg.avif', 'Нашли общий язык')">
                     <img src="https://i.postimg.cc/Hkfmys4n/temp-Imageo7h-OSg.avif" alt="Фото 2">
                     <div class="gallery-caption">Нашли общий язык</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/1RWLF3yS/temp-Image-FWk-A1i.avif', 'Сидр был отличный')">
                     <img src="https://i.postimg.cc/1RWLF3yS/temp-Image-FWk-A1i.avif" alt="Фото 3">
                     <div class="gallery-caption">Сидр был отличный</div>
                 </div>
-                <div class="gallery-item">
+                <div class="gallery-item" onclick="openLightbox('https://i.postimg.cc/LX9bqr7h/temp-Image9-MYU4-Q.avif', 'Попал в капкан, поймав подвязку на Котиной свадьбе')">
                     <img src="https://i.postimg.cc/LX9bqr7h/temp-Image9-MYU4-Q.avif" alt="Фото 4">
                     <div class="gallery-caption">Попал в капкан, поймав подвязку на Котиной свадьбе</div>
                 </div>
             </div>
         </div>
     </section>
- 
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <span class="close-lightbox" onclick="closeLightbox()">&times;</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
     <section class="rsvp" id="rsvp">
         <div class="container">
             <h2 class="section-title">Подтвердите присутствие</h2>
@@ -458,7 +521,7 @@
             </div>
         </div>
     </section>
- 
+
     <footer>
         <div class="container">
             <p class="footer-text">С нетерпением ждём встречи с вами и вашим алкогольным Альтерэго в наш особенный день!</p>
@@ -469,7 +532,7 @@
             </div>
         </div>
     </footer>
- 
+
     <script>
         // Countdown timer
         function updateCountdown() {
@@ -491,7 +554,27 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
         
-// Обработка формы
+        // Lightbox functionality
+        function openLightbox(imgSrc, caption) {
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').textContent = caption;
+            document.getElementById('lightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeLightbox() {
+            document.getElementById('lightbox').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        
+        // Закрытие по клику вне изображения
+        document.getElementById('lightbox').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLightbox();
+            }
+        });
+        
+        // Обработка формы
         const form = document.querySelector('form');
         const formSuccess = document.getElementById('form-success');
         
@@ -521,6 +604,7 @@
                 console.error(error);
             }
         });
+        
         // Smooth scrolling for anchor links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
@@ -532,6 +616,5 @@
             });
         });
     </script>
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
 </body>
 </html>
