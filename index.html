@@ -9,10 +9,12 @@
     <style>
         :root {
             --primary-color: #f0f7e8;
-            --secondary-color: #c8e0b8; /* Старый светло-зеленый */
-            --light-green: #e0f0d8; /* Новый более светлый зеленый */
+            --secondary-color: #c8e0b8;
+            --light-green: #e0f0d8;
+            --accent-color: #8bb174;
             --text-color: #3a4a35;
             --light-text: #ffffff;
+            --dark-green: #2a3a25; /* Новый более темный зеленый */
         }
         
         * {
@@ -37,10 +39,13 @@
         
         /* Header */
         header {
-            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), var(--header-bg, url('https://i.postimg.cc/PrNF9Gsb/temp-Image5-It-Mx-O.avif'));
+            background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('https://i.postimg.cc/PrNF9Gsb/temp-Image5-It-Mx-O.avif');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: scroll;
             height: 100vh;
+            min-height: 600px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -52,6 +57,8 @@
         
         .header-content {
             z-index: 2;
+            padding: 20px;
+            width: 100%;
         }
         
         .names {
@@ -99,11 +106,13 @@
             display: flex;
             justify-content: center;
             margin-top: 2rem;
+            flex-wrap: wrap;
         }
         
         .countdown-item {
             margin: 0 1rem;
             text-align: center;
+            min-width: 60px;
         }
         
         .countdown-number {
@@ -127,7 +136,7 @@
             font-size: 2.5rem;
             text-align: center;
             margin-bottom: 50px;
-            color: var(--accent-color);
+            color: var(--dark-green); /* Изменен цвет на более темный зеленый */
         }
         
         /* Our Story */
@@ -159,10 +168,12 @@
             flex: 1;
             min-width: 300px;
             text-align: center;
+            padding: 20px;
         }
         
         .story-image img {
             max-width: 100%;
+            height: auto;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
@@ -179,11 +190,10 @@
         }
         
         /* Details */
-
-
         .details {
-    background-color: var(--light-green); /* Новый более светлый зеленый */
-}
+            background-color: var(--light-green);
+        }
+        
         .details-item {
             text-align: center;
             margin-bottom: 40px;
@@ -199,6 +209,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             margin-bottom: 15px;
+            color: var(--dark-green); /* Изменен цвет на более темный зеленый */
         }
         
         /* Gallery */
@@ -227,7 +238,7 @@
         
         .gallery-item img {
             width: 100%;
-            height: 100%;
+            height: 250px;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
@@ -308,7 +319,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 600;
-            color: #000; /* Черный цвет для меток */
+            color: #000;
         }
         
         .form-group input,
@@ -319,7 +330,7 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             font-family: 'Montserrat', sans-serif;
-            color: #000; /* Черный цвет для текста ввода */
+            color: #000;
         }
         
         .form-group textarea {
@@ -358,8 +369,7 @@
         /* Дресс-код */
         .dress-code {
             background-color: var(--secondary-color);
-    padding: 50px 0; /* Здесь можно регулировать размер */
-    /* Верхний и нижний отступы - первое значение (80px), боковые - второе (0) */
+            padding: 50px 0;
         }
         
         .dress-code-container {
@@ -374,7 +384,7 @@
         .dress-code-title {
             font-family: 'Playfair Display', serif;
             font-size: 1.8rem;
-            color: var(--accent-color);
+            color: var(--dark-green); /* Изменен цвет на более темный зеленый */
             margin-bottom: 20px;
             text-align: center;
         }
@@ -399,29 +409,36 @@
         
         .dress-code-example img {
             width: 100%;
+            height: auto;
             border-radius: 8px;
-            margin-bottom: 2px;
+            margin-bottom: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
-        
-        /* Перечеркнутый текст */
+
+        /* Стиль для перечеркивания */
         .strikethrough {
             position: relative;
             display: inline-block;
         }
         
-        .strikethrough:after {
+        .strikethrough::after {
             content: "";
             position: absolute;
+            left: 50%;
             top: 50%;
-            left: 0;
             width: 100%;
-            height: 2px;
-            background: currentColor;
-            transform: translateY(-50%);
+            height: 3px;
+            background: var(--text-color);
+            transform: translate(-50%, -50%) rotate(-5deg); /* Центрирование и небольшой наклон */
         }
         
         /* Responsive */
         @media (max-width: 768px) {
+            header {
+                min-height: 100vh;
+                background-position: center center;
+            }
+            
             .names {
                 font-size: 3rem;
             }
@@ -430,12 +447,36 @@
                 font-size: 1.2rem;
             }
             
+            .invitation {
+                font-size: 1rem;
+                padding: 0 20px;
+            }
+            
+            .btn {
+                padding: 10px 25px;
+                font-size: 0.9rem;
+            }
+            
+            .countdown-item {
+                margin: 0 0.5rem;
+            }
+            
+            .countdown-number {
+                font-size: 2rem;
+            }
+            
             .story-content {
                 flex-direction: column;
             }
             
             .story-text, .story-image {
                 margin-bottom: 30px;
+                width: 100%;
+            }
+            
+            .story-image img {
+                max-width: 100%;
+                height: auto;
             }
             
             .gallery-grid {
@@ -443,17 +484,78 @@
                 gap: 10px;
             }
             
+            .gallery-item img {
+                height: 180px;
+            }
+            
             .gallery-caption {
                 font-size: 0.8rem;
                 padding: 8px;
             }
             
+            /* Улучшенное отображение картинок в разделе Дресс-код */
             .dress-code-examples {
-                gap: 10px;
+                gap: 15px;
             }
             
             .dress-code-example {
-                width: 150px;
+                width: 45%;
+                min-width: 150px;
+                margin-bottom: 20px;
+            }
+            
+            /* Уменьшаем отступы для мобильных устройств */
+            section {
+                padding: 50px 0;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 30px;
+            }
+            
+            .rsvp-form {
+                padding: 30px 20px;
+            }
+        }
+
+        /* Дополнительные стили для очень маленьких экранов */
+        @media (max-width: 480px) {
+            .names {
+                font-size: 2.2rem;
+            }
+            
+            .date {
+                font-size: 1rem;
+            }
+            
+            .countdown-item {
+                margin: 0 0.3rem;
+            }
+            
+            .countdown-number {
+                font-size: 1.5rem;
+            }
+            
+            .countdown-label {
+                font-size: 0.6rem;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-item img {
+                height: 220px;
+            }
+            
+            .dress-code-example {
+                width: 90%;
+                max-width: 200px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
             }
         }
     </style>
@@ -539,15 +641,12 @@
                     <div class="dress-code-examples">
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/k55SdYbx/temp-Imageb-Oq-Z5-J.avif" alt="Пример для мальчиков 1">
-                            
                         </div>
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/8C37gpDS/temp-Image-TQBr-RE.avif" alt="Пример для мальчиков 2">
-                            
                         </div>
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/Wbntb6jS/temp-Imageey-Vnaz.avif" alt="Пример для мальчиков 3">
-                            
                         </div>
                     </div>
                 </div>
@@ -559,15 +658,12 @@
                     <div class="dress-code-examples">
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/tCx0gr9H/temp-Image-RC0-W6x.avif" alt="Пример для девочек 1">
-                            
                         </div>
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/zBRgPLsW/temp-Imageczxt-JZ.avif" alt="Пример для девочек 2">
-                            
                         </div>
                         <div class="dress-code-example">
                             <img src="https://i.postimg.cc/YCsV1ZM9/temp-Image-Kau-Y5-V.avif" alt="Пример для девочек 3">
-                            
                         </div>
                     </div>
                 </div>
@@ -644,7 +740,6 @@
                     </div>
                     <button type="submit" class="btn">Отправить</button>
                     
-                    <!-- Сообщение об успешной отправке -->
                     <div id="form-success" style="display: none; margin-top: 20px; color: var(--accent-color);">
                         Спасибо! Ваше подтверждение получено.
                     </div>
@@ -662,96 +757,86 @@
         </div>
     </footer>
 
-    <script>
-        // Countdown timer
-        function updateCountdown() {
-            const weddingDate = new Date('August 25, 2025 16:00:00').getTime();
-            const now = new Date().getTime();
-            const distance = weddingDate - now;
-            
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            
-            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+<script>
+    // Countdown timer
+    function updateCountdown() {
+        const weddingDate = new Date('August 25, 2025 16:00:00').getTime();
+        const now = new Date().getTime();
+        const distance = weddingDate - now;
+        
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+        document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown(); // Инициализация при загрузке
+    
+    // Lightbox functionality
+    function openLightbox(imgSrc, caption) {
+        document.getElementById('lightbox-img').src = imgSrc;
+        document.getElementById('lightbox-caption').textContent = caption;
+        document.getElementById('lightbox').style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+    
+    document.getElementById('lightbox').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeLightbox();
         }
+    });
+    
+    // Обработка формы
+    const form = document.querySelector('form');
+    const formSuccess = document.getElementById('form-success');
+    
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
         
-        setInterval(updateCountdown, 1000);
-        updateCountdown();
-        
-        // Lightbox functionality
-        function openLightbox(imgSrc, caption) {
-            document.getElementById('lightbox-img').src = imgSrc;
-            document.getElementById('lightbox-caption').textContent = caption;
-            document.getElementById('lightbox').style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
-        
-        function closeLightbox() {
-            document.getElementById('lightbox').style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
-        
-        // Закрытие по клику вне изображения
-        document.getElementById('lightbox').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLightbox();
-            }
-        });
-        
-        // Обработка формы
-        const form = document.querySelector('form');
-        const formSuccess = document.getElementById('form-success');
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            try {
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    form.reset();
-                    formSuccess.style.display = 'block';
-                    setTimeout(() => {
-                        formSuccess.style.display = 'none';
-                    }, 5000);
-                } else {
-                    throw new Error('Ошибка отправки формы');
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
                 }
-            } catch (error) {
-                alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
-                console.error(error);
+            });
+            
+            if (response.ok) {
+                form.reset();
+                formSuccess.style.display = 'block';
+                setTimeout(() => {
+                    formSuccess.style.display = 'none';
+                }, 5000);
+            } else {
+                throw new Error('Ошибка отправки формы');
             }
-        });
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
+        } catch (error) {
+            alert('Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз.');
+            console.error(error);
+        }
+    });
+    
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
             });
         });
-        
-        // Функция для изменения фона в шапке
-        function setHeaderBackground(imageUrl) {
-            document.documentElement.style.setProperty('--header-bg', `url('${imageUrl}')`);
-        }
-        
-        // Пример использования (можно вызвать из консоли или добавить интерфейс для загрузки):
-        // setHeaderBackground('https://example.com/your-image.jpg');
-    </script>
+    });
+</script>
 </body>
 </html>
