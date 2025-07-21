@@ -11,7 +11,7 @@
             --primary-color: #f0f7e8;
             --secondary-color: #c8e0b8;
             --light-green: #e0f0d8;
-            --very-light-green: ##d8e8d0; /* Новый очень светлый зеленый */
+            --dress-code-green: #d8e8d0;
             --accent-color: #8bb174;
             --text-color: #3a4a35;
             --light-text: #ffffff;
@@ -44,7 +44,6 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: scroll;
             height: 100vh;
             min-height: 600px;
             display: flex;
@@ -54,6 +53,7 @@
             text-align: center;
             color: var(--light-text);
             position: relative;
+            overflow: hidden;
         }
         
         .header-content {
@@ -213,7 +213,7 @@
             color: var(--dark-green);
         }
         
-        /* Gallery - ОБНОВЛЕННЫЕ СТИЛИ */
+        /* Gallery */
         .gallery {
             background-color: var(--light-text);
         }
@@ -375,7 +375,7 @@
         
         /* Дресс-код */
         .dress-code {
-            background-color: var(--very-light-green);
+            background-color: var(--dress-code-green);
             padding: 50px 0;
         }
         
@@ -436,13 +436,14 @@
             width: 100%;
             height: 3px;
             background: var(--text-color);
-            transform: translate(-50%, -50%) rotate(-10deg);
+            transform: translate(-50%, -50%) rotate(-5deg);
         }
         
         /* Responsive */
         @media (max-width: 768px) {
             header {
-                min-height: 100vh;
+                background-attachment: scroll;
+                background-size: cover;
                 background-position: center center;
             }
             
@@ -515,16 +516,32 @@
             .rsvp-form {
                 padding: 30px 20px;
             }
+
+            /* Исправление для фоновой картинки в мобильной версии */
+            .gondola-bg {
+                object-position: center 30%; /* Центрируем важную часть изображения */
+            }
         }
 
         /* Мобильные устройства */
         @media (max-width: 480px) {
+            header {
+                background-size: cover;
+                background-position: center 30%;
+            }
+            
             .names {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+                margin-top: 20px;
             }
             
             .date {
-                font-size: 1rem;
+                font-size: 1.1rem;
+            }
+            
+            .invitation {
+                font-size: 0.95rem;
+                padding: 0 15px;
             }
             
             .countdown-item {
@@ -546,6 +563,15 @@
             
             .section-title {
                 font-size: 1.8rem;
+            }
+
+            /* Дополнительные правки для фоновой картинки */
+            .gondola-bg {
+                height: 100%;
+                width: auto;
+                min-width: 100%;
+                left: 50%;
+                transform: translateX(-50%);
             }
         }
     </style>
@@ -605,7 +631,7 @@
                     <h3 class="details-title"><span class="strikethrough">Первый</span> Второй день свадьбы</h3>
                     <p>Вы получили это приглашение, а значит находитесь в узком кругу наших ближайших друзей - поэтому ждем вас у себя Дома </p>
                     <p>25 августа 2025 в 16:00</p>
-                    <p>PartyDachaHouse - Посёлок Кратово, ул. Тверская, 5/17</p>
+                    <p>Посёлок Кратово, Тверская 5/17</p>
                 </div>
                 <div class="details-item">
                     <div class="details-icon">🎁</div>
